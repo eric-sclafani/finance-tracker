@@ -4,7 +4,7 @@ namespace FinanceTracker.Models;
 
 public class Purchase
 {
-	[Key] public int PurchaseId { get; set; }
+	[Key] public int PurchaseId { get; init; }
 	public DateOnly PurchaseDate { get; set; }
 	public decimal Amount { get; set; }
 	public string? Description { get; set; }
