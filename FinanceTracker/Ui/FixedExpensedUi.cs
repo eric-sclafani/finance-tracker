@@ -6,17 +6,17 @@ using Spectre.Console;
 
 namespace FinanceTracker.Ui;
 
-public class MonthlyBudgetUi
+public class FixedExpensedUi
 {
 	private readonly FinanceContext _context;
 	private readonly string[] _colNames;
 	private readonly Table _table;
-	private MonthlyBudget? _budgetData;
+	private IEnumerable<FixedExpense>? _expenseData;
 
-	public MonthlyBudgetUi(FinanceContext context)
+	public FixedExpensedUi(FinanceContext context)
 	{
 		_context = context;
-		_colNames = ["Cash In (net)", "Cash Out", "Disp. Income", "Note"];
+		_colNames = ["Date", "Desc", "Vendor", "Tag", "Amount", "Balance"];
 		_table = new Table();
 	}
 
@@ -28,7 +28,7 @@ public class MonthlyBudgetUi
 		string userSelection;
 		do
 		{
-			userSelection = FieldSelection();
+			userSelection = ActionSelecton();
 			switch (userSelection)
 			{
 				case "Exit":
@@ -40,25 +40,25 @@ public class MonthlyBudgetUi
 		Console.Clear();
 	}
 
-	private string FieldSelection()
+	private string ActionSelecton()
 	{
 		IEnumerable<string> choices =
 		[
+			"Add new",
+			"Edit",
+			"Delete",
 			"\n---Back to home---",
 			"\n---Exit---"
 		];
-		choices = _colNames.Concat(choices);
-
 		var input = UserInput.GetUserSelection(choices);
 		return input;
 	}
-
 
 	private void InitTable()
 	{
 		foreach (var col in _colNames)
 		{
-			_table.AddColumn(new TableColumn($"[orange1]{col}[/]"));
+			_table.AddColumn(new TableColumn($"[plum2]{col}[/]"));
 		}
 
 		RetrieveData();
@@ -67,28 +67,22 @@ public class MonthlyBudgetUi
 
 	private async void RetrieveData()
 	{
-		var data = (await _context.MonthlyBudget.ToListAsync()).FirstOrDefault();
-		_budgetData = data;
-	}
-
-	private void CalculateCashOut()
-	{
-	}
-
-	private void CalculateDispIncome()
-	{
+		var data = await _context.FixedExpenses.ToListAsync();
+		_expenseData = data;
 	}
 
 	private void TryAddDataToTable()
 	{
-		if (_budgetData != null)
+		if (_expenseData != null)
 		{
-			_table.AddRow(
-				_budgetData.NetCashIn.ToString() ?? string.Empty,
-				_budgetData.CashOut.ToString() ?? string.Empty,
-				_budgetData.DispIncome.ToString() ?? string.Empty,
-				_budgetData.Note ?? string.Empty
-			);
+			foreach (var expense in _expenseData)
+			{
+				_table.AddRow(
+					expense.Category ?? string.Empty,
+					expense.Amount.ToString(),
+					expense.DueDate.ToString()
+				);
+			}
 		}
 	}
 }

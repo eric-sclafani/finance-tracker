@@ -11,18 +11,24 @@ internal class Program
 	public static void Main()
 	{
 		var dBContext = new FinanceContext();
-
+		
 		string userSelection;
 		do
 		{
+			DisplayInitMessage();
 			userSelection = MainMenuSelection();
+			Console.Clear();
 
 			switch (userSelection)
 			{
 				case "Monthly Budget":
 					var budget = new MonthlyBudgetUi(dBContext);
 					budget.InitUi();
-
+					break;
+				
+				case "Fixed Expenses":
+					var expenses = new FixedExpensedUi(dBContext);
+					expenses.InitUi();
 					break;
 			}
 		} while (userSelection != "Exit");
@@ -37,8 +43,15 @@ internal class Program
 			"Monthly Budget",
 			"Exit"
 		];
-		const string title = "[deeppink3_1]Select an option:[/]";
-		var input = UserInput.GetUserSelection(choices, title);
+		var input = UserInput.GetUserSelection(choices);
 		return input;
+	}
+
+	private static void DisplayInitMessage()
+	{
+		AnsiConsole.Write(
+			new FigletText("Finance Tracker")
+				.Centered()
+				.Color(Color.Red));
 	}
 }

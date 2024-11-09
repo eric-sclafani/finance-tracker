@@ -4,15 +4,19 @@ namespace FinanceTracker.Utils;
 
 public static class UserInput
 {
-	public static string GetUserSelection(IEnumerable<string> choices, string title = "")
+	public static string GetUserSelection(IEnumerable<string> choices)
 	{
 		var input = AnsiConsole.Prompt(
 			new SelectionPrompt<string>()
-				.Title(title)
 				.AddChoices(choices)
 				.EnableSearch()
+				.HighlightStyle(
+					new Style()
+						.Decoration(Decoration.Bold | Decoration.Italic)
+						.Foreground(Color.Aqua)
+				)
 		);
 
-		return input.Trim('\n').Trim('-');
+		return input.Trim('\n').Trim('-').Trim();
 	}
 }
