@@ -1,0 +1,17 @@
+﻿@page
+@model IndexModel
+@{
+	ViewData["Title"] = "Home page";
+}
+
+<div class="">
+	@await Component.InvokeAsync("FixedExpenses")
+</div>
+
+<div class="">
+	@await Component.InvokeAsync("Budget")
+</div>
+
+<div class="">
+	@await Component.InvokeAsync("Purchases")
+</div>

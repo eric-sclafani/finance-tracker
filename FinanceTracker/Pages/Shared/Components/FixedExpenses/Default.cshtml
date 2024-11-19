@@ -1,0 +1,23 @@
+@model List<FinanceTracker.Models.FixedExpense>
+
+<h1>Fixed Expenses</h1>
+
+<table class="table table-bordered table-striped table-hover">
+	<thead>
+	<tr>
+		<th>Category</th>
+		<th>Amount</th>
+	</tr>
+
+	</thead>
+	<tbody>
+	@foreach (var x in Model)
+	{
+		<tr>
+			<td>@x.Category</td>
+			<td>$@x.Amount</td>
+		</tr>
+	}
+	</tbody>
+
+</table>
