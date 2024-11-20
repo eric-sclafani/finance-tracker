@@ -5,13 +5,20 @@
 }
 
 <div class="">
+	<h2>Fixed Expenses</h2>
+	<a class="btn btn-primary rounded-3" asp-page="/AddFixedExpense">
+		Add New
+	</a>
 	@await Component.InvokeAsync("FixedExpenses")
 </div>
 
 <div class="">
+
+	<h2>Budget</h2>
 	@await Component.InvokeAsync("Budget")
 </div>
 
 <div class="">
+	<h2>Purchases</h2>
 	@await Component.InvokeAsync("Purchases")
 </div>
