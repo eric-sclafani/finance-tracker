@@ -1,9 +1,11 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace FinanceTracker.Models;
 
 public class Budget
 {
 	public int Id { get; set; }
-	public int CashIn { get; set; }
-	public double CashOut { get; set; }
-	public double DisposableIncome { get; set; }
+	[Display(Name = "Cash In")] public int CashIn { get; set; }
+	[Display(Name = "Cash Out")] public double CashOut { get; set; }
+	[Display(Name = "Disposable Income")] public double DisposableIncome { get; set; }
 }

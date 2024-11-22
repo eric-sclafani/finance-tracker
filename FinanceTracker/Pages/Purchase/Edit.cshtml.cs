@@ -64,7 +64,7 @@ namespace FinanceTracker.Pages.Purchase
 				}
 			}
 
-			return RedirectToPage("./Index");
+			return RedirectToPage("../Index");
 		}
 
 		private bool PurchaseExists(int id)

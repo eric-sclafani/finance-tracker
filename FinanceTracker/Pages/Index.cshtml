@@ -58,25 +58,31 @@
 
 <section id="purchases-wrapper" class="w-50">
 	<p>
-		<a asp-page="FixedExpense/Create" class="btn btn-info rounded-3">Create New</a>
+		<a asp-page="Purchase/Create" class="btn btn-info rounded-3">Create New</a>
 	</p>
 	<table id="purchase-table" class="table table-bordered table-hover">
 		<thead>
 		<tr>
-			<th> @Html.DisplayNameFor(model => model.FixedExpenses[0].Category) </th>
-			<th> @Html.DisplayNameFor(model => model.FixedExpenses[0].Amount) </th>
+			<th> @Html.DisplayNameFor(model => model.Purchases[0].Date) </th>
+			<th> @Html.DisplayNameFor(model => model.Purchases[0].Description) </th>
+			<th> @Html.DisplayNameFor(model => model.Purchases[0].Vendor) </th>
+			<th> @Html.DisplayNameFor(model => model.Purchases[0].Tag) </th>
+			<th> @Html.DisplayNameFor(model => model.Purchases[0].Amount) </th>
 			<th></th>
 		</tr>
 		</thead>
 		<tbody>
-		@foreach (var item in Model.FixedExpenses)
+		@foreach (var item in Model.Purchases)
 		{
 			<tr>
-				<td>@Html.DisplayFor(modelItem => item.Category)</td>
+				<td>@Html.DisplayFor(modelItem => item.Date)</td>
+				<td>@Html.DisplayFor(modelItem => item.Description)</td>
+				<td>@Html.DisplayFor(modelItem => item.Vendor)</td>
+				<td>@Html.DisplayFor(modelItem => item.Tag)</td>
 				<td>@Html.DisplayFor(modelItem => item.Amount)</td>
 				<td>
-					<a asp-page="./FixedExpense/Edit" asp-route-id="@item.Id">Edit</a> |
-					<a asp-page="./FixedExpense/Delete" asp-route-id="@item.Id">Delete</a>
+					<a asp-page="./Purchase/Edit" asp-route-id="@item.Id">Edit</a> |
+					<a asp-page="./Purchase/Delete" asp-route-id="@item.Id">Delete</a>
 				</td>
 			</tr>
 		}
