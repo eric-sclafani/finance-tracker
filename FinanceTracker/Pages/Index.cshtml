@@ -21,7 +21,7 @@
 		{
 			<tr>
 				<td>@Html.DisplayFor(modelItem => item.Category)</td>
-				<td>@Html.DisplayFor(modelItem => item.Amount)</td>
+				<td>$@Html.DisplayFor(modelItem => item.Amount)</td>
 				<td>
 					<a asp-page="./FixedExpense/Edit" asp-route-id="@item.Id">Edit</a> |
 					<a asp-page="./FixedExpense/Delete" asp-route-id="@item.Id">Delete</a>
@@ -45,9 +45,9 @@
 		</thead>
 		<tbody>
 		<tr>
-			<td>@Html.DisplayFor(model => model.Budget.CashIn)</td>
-			<td>@Html.DisplayFor(model => model.Budget.CashOut)</td>
-			<td>@Html.DisplayFor(model => model.Budget.DisposableIncome)</td>
+			<td>$@Html.DisplayFor(model => model.Budget.CashIn)</td>
+			<td>$@Html.DisplayFor(model => model.Budget.CashOut)</td>
+			<td>$@Html.DisplayFor(model => model.Budget.DisposableIncome)</td>
 			<td>
 				<a asp-page="./Budget/Edit" asp-route-id="1">Edit</a>
 			</td>
@@ -79,7 +79,7 @@
 				<td>@Html.DisplayFor(modelItem => item.Description)</td>
 				<td>@Html.DisplayFor(modelItem => item.Vendor)</td>
 				<td>@Html.DisplayFor(modelItem => item.Tag)</td>
-				<td>@Html.DisplayFor(modelItem => item.Amount)</td>
+				<td>$@Html.DisplayFor(modelItem => item.Amount)</td>
 				<td>
 					<a asp-page="./Purchase/Edit" asp-route-id="@item.Id">Edit</a> |
 					<a asp-page="./Purchase/Delete" asp-route-id="@item.Id">Delete</a>
