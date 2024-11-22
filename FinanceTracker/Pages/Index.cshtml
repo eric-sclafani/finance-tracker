@@ -4,32 +4,82 @@
 	ViewData["Title"] = "Home page";
 }
 
-<p>
-	<a asp-page="FixedExpense/Create">Create New</a>
-</p>
-<table id="expense-table" class="table table-bordered table-hover">
-	<thead>
-	<tr>
-		<th>
-			@Html.DisplayNameFor(model => model.FixedExpense[0].Category)
-		</th>
-		<th>
-			@Html.DisplayNameFor(model => model.FixedExpense[0].Amount)
-		</th>
-		<th></th>
-	</tr>
-	</thead>
-	<tbody>
-	@foreach (var item in Model.FixedExpense)
-	{
+<section id="fixed-expenses-wrapper" class="w-50">
+	<p>
+		<a asp-page="FixedExpense/Create" class="btn btn-info rounded-3">Create New</a>
+	</p>
+	<table id="expense-table" class="table table-bordered table-hover">
+		<thead>
 		<tr>
-			<td>@Html.DisplayFor(modelItem => item.Category)</td>
-			<td>@Html.DisplayFor(modelItem => item.Amount)</td>
+			<th> @Html.DisplayNameFor(model => model.FixedExpenses[0].Category) </th>
+			<th> @Html.DisplayNameFor(model => model.FixedExpenses[0].Amount) </th>
+			<th></th>
+		</tr>
+		</thead>
+		<tbody>
+		@foreach (var item in Model.FixedExpenses)
+		{
+			<tr>
+				<td>@Html.DisplayFor(modelItem => item.Category)</td>
+				<td>@Html.DisplayFor(modelItem => item.Amount)</td>
+				<td>
+					<a asp-page="./FixedExpense/Edit" asp-route-id="@item.Id">Edit</a> |
+					<a asp-page="./FixedExpense/Delete" asp-route-id="@item.Id">Delete</a>
+				</td>
+			</tr>
+		}
+		</tbody>
+	</table>
+</section>
+
+<section id="budget-wrapper" class="w-50">
+
+	<table id="budget-table" class="table table-bordered table-hover">
+		<thead>
+		<tr>
+			<th> @Html.DisplayNameFor(model => model.Budget.CashIn) </th>
+			<th> @Html.DisplayNameFor(model => model.Budget.CashOut) </th>
+			<th> @Html.DisplayNameFor(model => model.Budget.DisposableIncome)</th>
+			<th></th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>@Html.DisplayFor(model => model.Budget.CashIn)</td>
+			<td>@Html.DisplayFor(model => model.Budget.CashOut)</td>
+			<td>@Html.DisplayFor(model => model.Budget.DisposableIncome)</td>
 			<td>
-				<a asp-page="./FixedExpense/Edit" asp-route-id="@item.Id">Edit</a> |
-				<a asp-page="./FixedExpense/Delete" asp-route-id="@item.Id">Delete</a>
+				<a asp-page="./Budget/Edit" asp-route-id="1">Edit</a>
 			</td>
 		</tr>
-	}
-	</tbody>
-</table>
+		</tbody>
+	</table>
+</section>
+
+<section id="purchases-wrapper" class="w-50">
+	<p>
+		<a asp-page="FixedExpense/Create" class="btn btn-info rounded-3">Create New</a>
+	</p>
+	<table id="purchase-table" class="table table-bordered table-hover">
+		<thead>
+		<tr>
+			<th> @Html.DisplayNameFor(model => model.FixedExpenses[0].Category) </th>
+			<th> @Html.DisplayNameFor(model => model.FixedExpenses[0].Amount) </th>
+			<th></th>
+		</tr>
+		</thead>
+		<tbody>
+		@foreach (var item in Model.FixedExpenses)
+		{
+			<tr>
+				<td>@Html.DisplayFor(modelItem => item.Category)</td>
+				<td>@Html.DisplayFor(modelItem => item.Amount)</td>
+				<td>
+					<a asp-page="./FixedExpense/Edit" asp-route-id="@item.Id">Edit</a> |
+					<a asp-page="./FixedExpense/Delete" asp-route-id="@item.Id">Delete</a>
+				</td>
+			</tr>
+		}
+		</tbody>
+	</table>
+</section>

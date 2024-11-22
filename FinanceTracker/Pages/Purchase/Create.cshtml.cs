@@ -1,14 +1,19 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using FinanceTracker.Models;
 using FinanceTracker.Services;
 
-namespace FinanceTracker.Pages.FixedExpense
+namespace FinanceTracker.Pages.Purchase
 {
 	public class CreateModel : PageModel
 	{
 		private readonly FinanceContext _context;
-
-		[BindProperty] public Models.FixedExpense FixedExpense { get; set; } = default!;
+		[BindProperty] public Models.Purchase Purchase { get; set; } = default!;
 
 		public CreateModel(FinanceContext context)
 		{
@@ -27,7 +32,7 @@ namespace FinanceTracker.Pages.FixedExpense
 				return Page();
 			}
 
-			_context.FixedExpenses.Add(FixedExpense);
+			_context.Purchases.Add(Purchase);
 			await _context.SaveChangesAsync();
 
 			return RedirectToPage("../Index");

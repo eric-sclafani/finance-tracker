@@ -9,7 +9,10 @@ public class IndexModel : PageModel
 {
 	private readonly ILogger<IndexModel> _logger;
 	private readonly FinanceContext _context;
-	public IList<Models.FixedExpense> FixedExpense { get; set; } = [];
+
+	public Models.Budget Budget { get; set; } = default!;
+	public IList<Models.FixedExpense> FixedExpenses { get; set; } = [];
+	public IList<Models.Purchase> Purchases { get; set; } = [];
 
 	public IndexModel(ILogger<IndexModel> logger, FinanceContext context)
 	{
@@ -19,6 +22,8 @@ public class IndexModel : PageModel
 
 	public async void OnGetAsync()
 	{
-		FixedExpense = await _context.FixedExpenses.ToListAsync();
+		FixedExpenses = await _context.FixedExpenses.ToListAsync();
+		Purchases = await _context.Purchases.ToListAsync();
+		Budget = await _context.Budget.FirstAsync();
 	}
 }

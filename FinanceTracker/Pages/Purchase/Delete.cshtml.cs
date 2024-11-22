@@ -8,12 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using FinanceTracker.Models;
 using FinanceTracker.Services;
 
-namespace FinanceTracker.Pages.FixedExpense
+namespace FinanceTracker.Pages.Purchase
 {
 	public class DeleteModel : PageModel
 	{
 		private readonly FinanceContext _context;
-		[BindProperty] public Models.FixedExpense FixedExpense { get; set; } = default!;
+		[BindProperty] public Models.Purchase Purchase { get; set; } = default!;
 
 		public DeleteModel(FinanceContext context)
 		{
@@ -27,11 +27,11 @@ namespace FinanceTracker.Pages.FixedExpense
 				return NotFound();
 			}
 
-			var fixedexpense = await _context.FixedExpenses.FirstOrDefaultAsync(m => m.Id == id);
+			var purchase = await _context.Purchases.FirstOrDefaultAsync(m => m.Id == id);
 
-			if (fixedexpense is not null)
+			if (purchase is not null)
 			{
-				FixedExpense = fixedexpense;
+				Purchase = purchase;
 
 				return Page();
 			}
@@ -46,11 +46,11 @@ namespace FinanceTracker.Pages.FixedExpense
 				return NotFound();
 			}
 
-			var fixedexpense = await _context.FixedExpenses.FindAsync(id);
-			if (fixedexpense != null)
+			var purchase = await _context.Purchases.FindAsync(id);
+			if (purchase != null)
 			{
-				FixedExpense = fixedexpense;
-				_context.FixedExpenses.Remove(FixedExpense);
+				Purchase = purchase;
+				_context.Purchases.Remove(Purchase);
 				await _context.SaveChangesAsync();
 			}
 

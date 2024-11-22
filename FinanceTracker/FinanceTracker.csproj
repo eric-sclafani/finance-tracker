@@ -29,6 +29,11 @@
       <_ContentIncludedByDefault Remove="Pages\Shared\Components\Budget\Default.cshtml" />
       <_ContentIncludedByDefault Remove="Pages\Shared\Components\FixedExpenses\Default.cshtml" />
       <_ContentIncludedByDefault Remove="Pages\Shared\Components\Purchases\Default.cshtml" />
+      <_ContentIncludedByDefault Remove="PagesBudget\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="PagesBudget\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="PagesBudget\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="PagesBudget\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="PagesBudget\Index.cshtml" />
     </ItemGroup>
 
 </Project>
