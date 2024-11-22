@@ -4,21 +4,32 @@
 	ViewData["Title"] = "Home page";
 }
 
-<div class="">
-	<h2>Fixed Expenses</h2>
-	<a class="btn btn-primary rounded-3" asp-page="/AddFixedExpense">
-		Add New
-	</a>
-	@await Component.InvokeAsync("FixedExpenses")
-</div>
-
-<div class="">
-
-	<h2>Budget</h2>
-	@await Component.InvokeAsync("Budget")
-</div>
-
-<div class="">
-	<h2>Purchases</h2>
-	@await Component.InvokeAsync("Purchases")
-</div>
+<p>
+	<a asp-page="FixedExpense/Create">Create New</a>
+</p>
+<table id="expense-table" class="table table-bordered table-hover">
+	<thead>
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.FixedExpense[0].Category)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.FixedExpense[0].Amount)
+		</th>
+		<th></th>
+	</tr>
+	</thead>
+	<tbody>
+	@foreach (var item in Model.FixedExpense)
+	{
+		<tr>
+			<td>@Html.DisplayFor(modelItem => item.Category)</td>
+			<td>@Html.DisplayFor(modelItem => item.Amount)</td>
+			<td>
+				<a asp-page="./FixedExpense/Edit" asp-route-id="@item.Id">Edit</a> |
+				<a asp-page="./FixedExpense/Delete" asp-route-id="@item.Id">Delete</a>
+			</td>
+		</tr>
+	}
+	</tbody>
+</table>
