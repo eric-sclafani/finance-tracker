@@ -4,17 +4,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FinanceTracker.ViewComponents;
 
-public class FixedExpenseViewComponent : ViewComponent
+public class PurchasesViewComponent : ViewComponent
 {
 	private readonly FinanceContext _context;
 
-	public FixedExpenseViewComponent(FinanceContext context)
+	public PurchasesViewComponent(FinanceContext context)
 	{
 		_context = context;
 	}
+
 	public async Task<IViewComponentResult> InvokeAsync()
 	{
-		var fixedExpenses = await _context.FixedExpenses.ToListAsync();
-		return View("Default",fixedExpenses);
+		var purchases = await _context.Purchases.ToListAsync();
+		return View("Default", purchases);
 	}
 }
