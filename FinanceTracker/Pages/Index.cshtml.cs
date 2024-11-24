@@ -13,6 +13,7 @@ public class IndexModel : PageModel
 	public Models.Budget Budget { get; set; } = default!;
 	public IList<Models.FixedExpense> FixedExpenses { get; set; } = [];
 	public IList<Models.Purchase> Purchases { get; set; } = [];
+	public double Balance { get; set; }
 
 	public IndexModel(ILogger<IndexModel> logger, FinanceContext context)
 	{
@@ -24,6 +25,7 @@ public class IndexModel : PageModel
 	{
 		GetData();
 		UpdateBudget();
+		Balance = CalculateBalance();
 	}
 
 
@@ -55,5 +57,24 @@ public class IndexModel : PageModel
 			entity.DisposableIncome = CalculateDispoIncome();
 			await _context.SaveChangesAsync();
 		}
+	}
+
+	private double CalculateBalance()
+	{
+		double? result = null;
+		var firstPurchase = Purchases.FirstOrDefault(item => item.Id == 1);
+		if (firstPurchase != null)
+		{
+			result = Budget.DisposableIncome - firstPurchase.Amount;
+		}
+
+		if (result != null)
+		{
+			var purchases = Purchases.Where(item => item.Id != 1);
+			result = purchases.Aggregate(result, (current, purchase) => current - purchase.Amount);
+		}
+
+
+		return result ?? 0;
 	}
 }
