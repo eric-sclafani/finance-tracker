@@ -36,4 +36,8 @@
       <_ContentIncludedByDefault Remove="PagesBudget\Index.cshtml" />
     </ItemGroup>
 
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Pages\Shared\Components\Budget\Default.cshtml" />
+    </ItemGroup>
+
 </Project>
